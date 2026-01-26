@@ -203,6 +203,7 @@ final class MutationType extends ObjectType
                 $args = [
                     'id' => ['type' => Type::int()],
                     'fullpath' => ['type' => Type::string()],
+                    'published' => ['type' => Type::boolean()],
                     'omitVersionCreate' => ['type' => Type::boolean()],
                     'userId' => ['type' => Type::int()],
                 ];
@@ -234,6 +235,9 @@ final class MutationType extends ObjectType
                                 'success' => false,
                                 'message' => 'not allowed to update document',
                             ];
+                        }
+                        if (isset($args['published'])) {
+                            $element->setPublished($args['published']);
                         }
                     } else {
                         $parent = null;
